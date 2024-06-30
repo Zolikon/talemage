@@ -1,0 +1,63 @@
+import { useState } from "react";
+import ImageButton from "./ImageButton";
+import { useTale } from "./TaleContext";
+import NextButton from "./NextButton";
+
+const topics = {
+  "A fairy tale": [
+    { value: "demon", description: "Demon" },
+    { value: "female_hero", label: "Female Hero" },
+    { value: "female_mage", label: "Female Mage" },
+    { value: "hero", label: "Hero" },
+    { value: "mage", label: "Mage" },
+    { value: "princess", label: "Princess" },
+  ],
+  "Tale about animals": [
+    { value: "dog", label: "Dog" },
+    { value: "cat", label: "Cat" },
+    { value: "rabbit", label: "Rabbit" },
+    { value: "eagle", label: "Eagle" },
+    { value: "fox", label: "Fox" },
+    { value: "wolf", label: "Wolf" },
+  ],
+};
+
+function SelectContent() {
+  const [content, setContent] = useState([]);
+  const { getGenre, setContent: finalizeContent } = useTale();
+
+  function toggleTopic(topic) {
+    if (content.includes(topic)) {
+      removeTopic(topic);
+    } else {
+      setContent((current) => [...current, topic]);
+    }
+  }
+
+  function removeTopic(topic) {
+    setContent((current) => current.filter((t) => t !== topic));
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-around">
+      <div className="flex flex-wrap my-10 items-center justify-center">
+        {topics[getGenre()].map((topic) => (
+          <ImageButton
+            key={topic.value}
+            imageSrc={`/topics/${topic.value}.webp`}
+            altText={topic.value}
+            onClick={() => toggleTopic(topic.value)}
+            selected={content.includes(topic.value)}
+          />
+        ))}
+      </div>
+      <NextButton
+        disabled={content.length < 2 || content.length > 4}
+        beforeNextStatusAction={() => finalizeContent(content)}
+        disabledTooltip={content.length < 2 ? "Select more topics" : "Select fewer topics"}
+      />
+    </div>
+  );
+}
+
+export default SelectContent;
