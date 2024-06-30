@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTale } from "./TaleContext";
 import PropTypes from "prop-types";
 import API_URL from "./environment";
@@ -59,7 +59,7 @@ function Tale() {
 
   return (
     <div className="flex flex-col h-full w-4/5 items-center justify-start my-7">
-      <div className="text-[64px] font-semibold bg-green-600 p-2 rounded-xl">{title}</div>
+      <div className="text-3xl font-semibold bg-green-600 p-2 rounded-xl">{title}</div>
       <div className="flex flex-col gap-2 items-center justify-center overflow-y-auto my-4 box-border" style={{}}>
         <FormattedTale tale={tale} fontSize={fontSize} />
       </div>
@@ -72,10 +72,12 @@ function FormattedTale({ tale, fontSize }) {
   const taleLines = tale.split("\n");
   const lineNumber = taleLines.length;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const firstLineRef = useRef(null);
 
   function nextPage() {
     if (nextPageAvailable()) {
       setCurrentIndex((current) => current + MAX_LINE_PER_PAGE);
+      firstLineRef.current.scrollIntoView();
     }
   }
 
@@ -90,11 +92,21 @@ function FormattedTale({ tale, fontSize }) {
   function previousPage() {
     if (previousPageAvailable()) {
       setCurrentIndex((current) => current - MAX_LINE_PER_PAGE);
+      firstLineRef.current.scrollIntoView();
     }
   }
 
   return (
     <div className="flex flex-col gap-2 items-center h-full">
+      <div className="flex items-center justify-center gap-8">
+        <div style={{ fontSize }} className="w-[75%] xl:w-1/2 font-semibold text-xl">
+          {taleLines.slice(currentIndex, currentIndex + MAX_LINE_PER_PAGE).map((line, index) => (
+            <p key={index} ref={index === 0 ? firstLineRef : null}>
+              {line}
+            </p>
+          ))}
+        </div>
+      </div>
       <div className="flex gap-2 items-center">
         <button
           onClick={previousPage}
@@ -113,13 +125,6 @@ function FormattedTale({ tale, fontSize }) {
         <p className="font-bold px-4">
           {currentIndex / MAX_LINE_PER_PAGE + 1}/{Math.ceil(lineNumber / MAX_LINE_PER_PAGE)}
         </p>
-      </div>
-      <div className="flex items-center justify-center gap-8">
-        <div style={{ fontSize }} className="w-[75%] xl:w-1/2 font-semibold text-xl">
-          {taleLines.slice(currentIndex, currentIndex + MAX_LINE_PER_PAGE).map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}
-        </div>
       </div>
     </div>
   );

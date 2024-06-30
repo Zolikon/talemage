@@ -12,9 +12,9 @@ function SelectGenre() {
   }
 
   return (
-    <div className="flex flex-col items-center overflow-y-auto h-full">
+    <div className="flex flex-col items-center  h-full">
       <h1 className="text-2xl font-bold">{genre}</h1>
-      <div className="flex my-6 flex-wrap items-center justify-center ">
+      <div className="flex my-6 flex-wrap items-center justify-center overflow-y-auto ">
         <ImageButton
           size="huge"
           imageSrc="/fantasy_genre.webp"
@@ -26,7 +26,7 @@ function SelectGenre() {
         />
         <ImageButton
           size="huge"
-          imageSrc="animal_genre .webp"
+          imageSrc="/animal_genre.webp"
           altText="animals"
           onClick={() => {
             setGenre("Tale about animals");

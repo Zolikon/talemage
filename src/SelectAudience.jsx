@@ -49,7 +49,7 @@ function SelectAudience() {
       <div className="flex w-full items-center justify-center gap-4">
         <button
           className="flex items-center justify-center disabled::grayscale disabled:opacity-50 cursor-not-allowed"
-          disabled={audience.length >= 3}
+          disabled={audience.length >= 2}
           onClick={() => setAudience([...audience, { genre: "", age: "" }])}
         >
           <img className="h-10 w-10" src="/+.svg" />

@@ -6,8 +6,8 @@ import NextButton from "./NextButton";
 const languages = ["gb", "us", "es", "gr", "hu"];
 
 const languageNames = {
-  gb: "English",
-  us: "American English",
+  gb: "Brittish",
+  us: "US English",
   es: "Spanish",
   gr: "Greek",
   hu: "Hungarian",
@@ -18,10 +18,11 @@ function SelectLanguage() {
   const { setLanguage } = useTale();
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex gap-3 my-6 flex-wrap items-center justify-center">
+    <div className="flex flex-col items-center h-full ">
+      <h1 className="text-2xl font-bold">{selectedLanguage ? languageNames[selectedLanguage] : "Select language"}</h1>
+      <div className="flex gap-3 my-6 flex-wrap items-center justify-end pr-2 overflow-y-auto">
         {languages.map((l) => (
-          <div key={l} className="flex flex-col gap-3 items-center">
+          <div key={l} className="flex gap-2 items-center justify-end">
             <p className="text-2xl font-bold">{languageNames[l]}</p>
             <ImageButton
               size="big"
