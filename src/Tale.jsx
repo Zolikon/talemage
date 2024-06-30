@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTale } from "./TaleContext";
 import PropTypes from "prop-types";
+import API_URL from "./environment";
 
 function Tale() {
   const { getFinalState, setTale, nextStatus, setToErrorState, tale, title } = useTale();
@@ -22,7 +23,7 @@ function Tale() {
 
   useEffect(() => {
     if (!tale) {
-      fetch("http://localhost:8000/create-tale", {
+      fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
