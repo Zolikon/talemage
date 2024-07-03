@@ -17,8 +17,8 @@ function SelectAudience() {
   }
 
   return (
-    <div className="flex flex-col">
-      <div>
+    <div className="flex flex-col h-full">
+      <div className="flex flex-col h-[90%] overflow-y-auto custom-scrollbar mb-3">
         {audience.map((audienceMember, index) => (
           <AudienceMember
             key={index}
@@ -48,7 +48,7 @@ function SelectAudience() {
       </div>
       <div className="flex w-full items-center justify-center gap-4">
         <button
-          className="flex items-center justify-center disabled::grayscale disabled:opacity-50 cursor-not-allowed"
+          className="flex items-center justify-center disabled::grayscale disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={audience.length >= 2}
           onClick={() => setAudience([...audience, { genre: "", age: "" }])}
         >
@@ -66,7 +66,7 @@ function SelectAudience() {
 
 function AudienceMember({ genre, setGenre, age, setAge, removeSelf }) {
   return (
-    <div className={`flex flex-col items-center gap-2 xl-gap-12 ${age && genre && "bg-green-400"} m-2 p-2`}>
+    <div className={`flex flex-col xl:flex-row items-center gap-2 xl-gap-12 ${age && genre && "bg-green-400"} m-2 p-2`}>
       <div className="flex gap-2">
         <ImageButton
           imageSrc="/boy.webp"
@@ -124,14 +124,17 @@ function AudienceMember({ genre, setGenre, age, setAge, removeSelf }) {
           }}
           selected={age === "8+"}
         />
+        {removeSelf ? (
+          <button
+            onClick={removeSelf}
+            className="w-4 h-4 xl:w-8 xl:h-8 self-start bg-red-400 rounded-full p-2 items-center justify-center flex hover:bg-red-600"
+          >
+            <span className="material-symbols-outlined text-sm sm:text-xl">close</span>
+          </button>
+        ) : (
+          <div className="w-4 xl:w-8" />
+        )}
       </div>
-      {removeSelf ? (
-        <button onClick={removeSelf} className="w-4 xl:w-8">
-          <img src="/-.svg" />
-        </button>
-      ) : (
-        <div className="w-4 xl:w-8" />
-      )}
     </div>
   );
 }

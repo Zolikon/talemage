@@ -6,6 +6,7 @@ import NextButton from "./NextButton";
 const topics = {
   "A fairy tale": [
     { value: "demon", description: "Demon" },
+    { value: "dragon", label: "Dragon" },
     { value: "female_hero", label: "Female Hero" },
     { value: "female_mage", label: "Female Mage" },
     { value: "hero", label: "Hero" },
@@ -19,6 +20,14 @@ const topics = {
     { value: "eagle", label: "Eagle" },
     { value: "fox", label: "Fox" },
     { value: "wolf", label: "Wolf" },
+  ],
+  "Tale about contruction machines": [
+    { value: "dump_truck", label: "Dump truck" },
+    { value: "excavator", label: "Excavator" },
+    { value: "cement_mixer", label: "Cement mixer" },
+    { value: "backhoe_loader", label: "Backhoe loader" },
+    { value: "tower_crane", label: "Tower crane" },
+    { value: "road_roller", label: "Roal roller" },
   ],
 };
 

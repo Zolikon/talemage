@@ -14,7 +14,7 @@ function SelectGenre() {
   return (
     <div className="flex flex-col items-center  h-full">
       <h1 className="text-2xl font-bold">{genre}</h1>
-      <div className="flex my-6 flex-wrap items-center justify-center overflow-y-auto ">
+      <div className="flex my-12 py-12 flex-col sm:flex-row sm:flex-wrap items-center justify-center  custom-scrollbar overflow-x-auto overflow-y-hidden sm:overflow-x-hidden sm:overflow-y-auto">
         <ImageButton
           size="huge"
           imageSrc="/fantasy_genre.webp"
@@ -32,6 +32,15 @@ function SelectGenre() {
             setGenre("Tale about animals");
           }}
           selected={genre === "Tale about animals"}
+        />
+        <ImageButton
+          size="huge"
+          imageSrc="/contruction_genre.webp"
+          altText="contruction machines"
+          onClick={() => {
+            setGenre("Tale about contruction machines");
+          }}
+          selected={genre === "Tale about contruction machines"}
         />
       </div>
       <NextButton

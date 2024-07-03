@@ -6,7 +6,7 @@ import NextButton from "./NextButton";
 const languages = ["gb", "us", "es", "gr", "hu"];
 
 const languageNames = {
-  gb: "Brittish",
+  gb: "British",
   us: "US English",
   es: "Spanish",
   gr: "Greek",
@@ -20,10 +20,9 @@ function SelectLanguage() {
   return (
     <div className="flex flex-col items-center h-full ">
       <h1 className="text-2xl font-bold">{selectedLanguage ? languageNames[selectedLanguage] : "Select language"}</h1>
-      <div className="flex gap-3 my-6 flex-wrap items-center justify-end pr-2 overflow-y-auto">
+      <div className="flex gap-3 my-6 flex-wrap items-center justify-center pr-2 overflow-y-auto custom-scrollbar">
         {languages.map((l) => (
-          <div key={l} className="flex gap-2 items-center justify-end">
-            <p className="text-2xl font-bold">{languageNames[l]}</p>
+          <div key={l} className="flex flex-col gap-2 items-center justify-end">
             <ImageButton
               size="big"
               imageSrc={`/flags/${l}.svg`}
