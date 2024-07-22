@@ -42,7 +42,7 @@ function App() {
             <img src={"/logo.svg"} className="h-4/5" onClick={reset} />
           </div>
         </header>
-        <section className="flex justify-center items-center bg-[#95d7eb] p-2 flex-grow h-4/5 relative">
+        <section className="flex justify-center items-center bg-[#95d7eb] p-2 flex-grow h-4/5 w-full relative">
           {componentToDisplay()}
           <HomeButton />
         </section>

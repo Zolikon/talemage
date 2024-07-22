@@ -5,15 +5,15 @@ import { useTale } from "./TaleContext";
 import NextButton from "./NextButton";
 
 function SelectAudience() {
-  const [audience, setAudience] = useState([{ genre: "", age: "" }]);
+  const [audience, setAudience] = useState([{ gender: "", age: "" }]);
   const { setAudience: finalizeAudience } = useTale();
 
   function isConfigured() {
-    return audience.length > 0 && audience.every((member) => member.genre && member.age);
+    return audience.length > 0 && audience.every((member) => member.gender && member.age);
   }
 
   function finishSetup() {
-    finalizeAudience(audience.map(({ genre, age }) => `a ${genre} ${age} year old`));
+    finalizeAudience(audience.map(({ gender, age }) => `a ${gender} ${age} year old`));
   }
 
   return (
@@ -22,10 +22,10 @@ function SelectAudience() {
         {audience.map((audienceMember, index) => (
           <AudienceMember
             key={index}
-            genre={audienceMember.genre}
-            setGenre={(genre) => {
+            gender={audienceMember.gender}
+            setGender={(gender) => {
               const newAudience = [...audience];
-              newAudience[index].genre = genre;
+              newAudience[index].gender = gender;
               setAudience(newAudience);
             }}
             age={audienceMember.age}
@@ -50,7 +50,7 @@ function SelectAudience() {
         <button
           className="flex items-center justify-center disabled::grayscale disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={audience.length >= 2}
-          onClick={() => setAudience([...audience, { genre: "", age: "" }])}
+          onClick={() => setAudience([...audience, { gender: "", age: "" }])}
         >
           <img className="h-10 w-10" src="/+.svg" />
         </button>
@@ -64,26 +64,28 @@ function SelectAudience() {
   );
 }
 
-function AudienceMember({ genre, setGenre, age, setAge, removeSelf }) {
+function AudienceMember({ gender, setGender, age, setAge, removeSelf }) {
   return (
-    <div className={`flex flex-col xl:flex-row items-center gap-2 xl-gap-12 ${age && genre && "bg-green-400"} m-2 p-2`}>
+    <div
+      className={`flex flex-col xl:flex-row items-center gap-2 xl-gap-12 ${age && gender && "bg-green-400"} m-2 p-2`}
+    >
       <div className="flex gap-2">
         <ImageButton
           imageSrc="/boy.webp"
           altText="boy"
           onClick={() => {
-            setGenre("boy");
+            setGender("boy");
           }}
-          selected={genre === "boy"}
+          selected={gender === "boy"}
         />
 
         <ImageButton
           imageSrc="/girl.webp"
           altText="girl"
           onClick={() => {
-            setGenre("girl");
+            setGender("girl");
           }}
-          selected={genre === "girl"}
+          selected={gender === "girl"}
         />
       </div>
 
@@ -140,8 +142,8 @@ function AudienceMember({ genre, setGenre, age, setAge, removeSelf }) {
 }
 
 AudienceMember.propTypes = {
-  genre: PropTypes.string.isRequired,
-  setGenre: PropTypes.func.isRequired,
+  gender: PropTypes.string.isRequired,
+  setGender: PropTypes.func.isRequired,
   age: PropTypes.string.isRequired,
   setAge: PropTypes.func.isRequired,
   removeSelf: PropTypes.func,

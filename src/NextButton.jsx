@@ -15,8 +15,8 @@ function NextButton({ beforeNextStatusAction, disabled = false, disabledTooltip 
         onClick={handleClick}
         disabled={disabled}
         className="disabled:grayscale disabled:cursor-not-allowed border-[#ee4208] 
-          border-4 rounded-full shadow-lg hover:shadow-xl hover:bg-[#e4c61d] disabled:bg-gray-500 transition duration-500 ease-in-out
-          flex items-center justify-center aspect-square w-16 h-16"
+          border-2 sm:border-4 rounded-full shadow-lg hover:shadow-xl hover:bg-[#e4c61d] disabled:bg-gray-500 transition duration-500 ease-in-out
+          flex items-center justify-center aspect-square size-8 sm:w-16 sm:h-16"
       >
         <img src="/next.svg" />
       </button>
