@@ -67,10 +67,13 @@ function SelectAudience() {
 function AudienceMember({ gender, setGender, age, setAge, removeSelf }) {
   return (
     <div
-      className={`flex flex-col xl:flex-row items-center gap-2 xl-gap-12 ${age && gender && "bg-green-400"} m-2 p-2`}
+      className={`relative flex flex-col xl:flex-row items-center gap-2 xl-gap-12 ${
+        age && gender && "bg-green-400"
+      } m-2 p-2`}
     >
       <div className="flex gap-2">
         <ImageButton
+          size="medium"
           imageSrc="/boy.webp"
           altText="boy"
           onClick={() => {
@@ -80,6 +83,7 @@ function AudienceMember({ gender, setGender, age, setAge, removeSelf }) {
         />
 
         <ImageButton
+          size="medium"
           imageSrc="/girl.webp"
           altText="girl"
           onClick={() => {
@@ -89,7 +93,7 @@ function AudienceMember({ gender, setGender, age, setAge, removeSelf }) {
         />
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap items-center justify-center">
         <ImageButton
           imageSrc="/0-2.svg"
           altText="age 0-2"
@@ -126,15 +130,13 @@ function AudienceMember({ gender, setGender, age, setAge, removeSelf }) {
           }}
           selected={age === "8+"}
         />
-        {removeSelf ? (
+        {removeSelf && (
           <button
             onClick={removeSelf}
-            className="w-4 h-4 xl:w-8 xl:h-8 self-start bg-red-400 rounded-full p-2 items-center justify-center flex hover:bg-red-600"
+            className="w-4 h-4 xl:w-8 xl:h-8 self-start bg-red-400 rounded-full p-2 items-center justify-center flex hover:bg-red-600 absolute top-[10px] right-[10px]"
           >
             <span className="material-symbols-outlined text-sm sm:text-xl">close</span>
           </button>
-        ) : (
-          <div className="w-4 xl:w-8" />
         )}
       </div>
     </div>

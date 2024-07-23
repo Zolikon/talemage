@@ -8,6 +8,8 @@ function resolveSize(size) {
       return "size-24 md:size-32 2xl:size-64";
     case "medium":
       return "size-12 md:size-24 2xl:size-32";
+    case "small":
+      return "size-9 md:size-12 2xl:size-24";
     default:
       return "size-24 md:size-32 2xl:size-64";
   }

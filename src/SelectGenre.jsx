@@ -12,9 +12,9 @@ function SelectGenre() {
   }
 
   return (
-    <div className="flex flex-col items-center  h-full">
+    <div className="flex flex-col items-center h-full w-full">
       <h1 className="text-lg sm:text-2xl font-bold">{genre}</h1>
-      <div className="flex my-2 py-2 sm:py-12 flex-col sm:flex-row items-center justify-center custom-scrollbar overflow-x-hidden overflow-y-auto sm:overflow-x-auto sm:overflow-y-hidden">
+      <div className="w-full flex my-2 py-2 sm:py-12 flex-col sm:flex-row items-center justify-center custom-scrollbar overflow-x-hidden overflow-y-auto sm:overflow-x-auto sm:overflow-y-hidden">
         <ImageButton
           size="huge"
           imageSrc="/fantasy_genre.webp"
